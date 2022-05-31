@@ -1,7 +1,8 @@
-package com.entin.cataas
+package com.entin.cataas.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.entin.cataas.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Cataas"
 include(":app")
+include(":data")
+include(":domain")

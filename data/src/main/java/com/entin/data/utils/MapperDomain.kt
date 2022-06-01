@@ -10,5 +10,5 @@ import com.entin.domain.model.CatDomain
 
 fun CatJson.mapToCatDomain(): CatDomain =
     CatDomain(
-        urlImg = this.url
+        urlImg = "https://cataas.com" + this.url
     )

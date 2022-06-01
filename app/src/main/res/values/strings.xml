@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Cataas</string>
+    <string name="title_action_bar">Generator kotow</string>
+    <string name="zero">0</string>
+    <string name="sixty">60</string>
+    <string name="add_text">Dodaj tekst</string>
+    <string name="error">Błąd połączenia</string>
+    <string name="my_label">my_label</string>
+    <string name="give_me_cat">DAJ MI KOTA</string>
+    <string name="description_cat_photo">cat photo</string>
 </resources>

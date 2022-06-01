@@ -5,24 +5,46 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.entin.cataas.R
+import com.entin.cataas.databinding.ActivityMainBinding
 import com.entin.cataas.presentation.screens.main.MainScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
+private lateinit var binding: ActivityMainBinding
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val mainScreenViewModel: MainScreenViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val mainScreenViewModel: MainScreenViewModel by viewModels()
-        mainScreenViewModel.fetchTags()
+        downloadTags()
+        showSplashScreen(mainScreenViewModel)
+        setupActionBar()
+        bindView()
+    }
 
+    private fun bindView() {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+
+    private fun downloadTags() {
+        mainScreenViewModel.fetchTags()
+    }
+
+    private fun showSplashScreen(mainScreenViewModel: MainScreenViewModel) {
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 mainScreenViewModel.stateSplashScreen.value
             }
         }
+    }
 
-        setContentView(R.layout.activity_main)
+    private fun setupActionBar() {
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.title = getString(R.string.title_action_bar)
     }
 }

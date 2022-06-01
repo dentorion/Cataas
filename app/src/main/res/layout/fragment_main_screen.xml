@@ -1,8 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
     tools:context=".presentation.screens.main.MainScreenFragment">
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp">
+
+        <ImageView
+            android:id="@+id/main_screen_cat_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintDimensionRatio="1.5:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/placeholder_gray_rectangle_rounded"
+            android:contentDescription="@string/description_cat_photo" />
+
+        <!-- TAG -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_screen_menu_tags"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/my_label"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_cat_image">
+
+            <AutoCompleteTextView
+                android:id="@+id/main_screen_menu_tags_textField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- FILTER -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_screen_menu_filters"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/my_label"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_tags">
+
+            <AutoCompleteTextView
+                android:id="@+id/main_screen_menu_filters_textField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- CHECK BOX -->
+
+        <CheckBox
+            android:id="@+id/main_screen_menu_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/add_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_filters" />
+
+        <!-- TEXT FOR IMAGE -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_screen_menu_text_for_image"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/my_label"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_checkBox"
+            tools:layout_editor_absoluteX="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/main_screen_menu_text_for_image_textfield"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- SLIDER -->
+
+        <TextView
+            android:id="@+id/main_screen_menu_slider_label_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/main_screen_menu_slider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/main_screen_menu_slider"
+            app:layout_constraintVertical_bias="0.75"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/main_screen_menu_slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:stepSize="1"
+            android:valueFrom="@string/zero"
+            android:valueTo="@string/sixty"
+            app:labelBehavior="withinBounds"
+            app:layout_constraintEnd_toStartOf="@+id/main_screen_menu_slider_label_sixty"
+            app:layout_constraintStart_toEndOf="@+id/main_screen_menu_slider_label_zero"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_text_for_image"
+            app:thumbColor="@color/black"
+            app:tickColorActive="@color/black"
+            app:tickColorInactive="@color/black"
+            app:trackColorActive="@color/black"
+            app:trackColorInactive="@color/black" />
+
+        <TextView
+            android:id="@+id/main_screen_menu_slider_label_sixty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sixty"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/main_screen_menu_slider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/main_screen_menu_slider"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <!-- COLOR -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/main_screen_menu_colors"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/my_label"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_slider">
+
+            <AutoCompleteTextView
+                android:id="@+id/main_screen_menu_colors_textField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/main_screen_get_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/give_me_cat"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_colors" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

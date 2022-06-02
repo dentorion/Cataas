@@ -15,5 +15,15 @@ class MenuService @Inject constructor() {
         listOf("Brak", "blur", "mono", "sepia", "negative", "paint", "pixel")
 
     fun getColorMenuItems() =
-        listOf("black", "white", "gray", "red", "yellow", "green", "blue", "orange", "pink")
+        mapOf(
+            "Czarny" to "black",
+            "Biały" to "white",
+            "Szary" to "gray",
+            "Czerwony" to "red",
+            "Żółty" to "yellow",
+            "Zielony" to "green",
+            "Niebieski" to "blue",
+            "Pomarańczowy" to "orange",
+            "Różowy" to "pink"
+        )
 }

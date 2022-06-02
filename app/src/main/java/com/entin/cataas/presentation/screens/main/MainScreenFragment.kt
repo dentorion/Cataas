@@ -157,7 +157,7 @@ class MainScreenFragment : Fragment() {
 
     private fun setColorMenu() {
         binding.mainScreenMenuColors.isVisible = viewModel.isFullSearch
-        adapterColors = ArrayAdapter(requireContext(), R.layout.list_item, viewModel.colors)
+        adapterColors = ArrayAdapter(requireContext(), R.layout.list_item, viewModel.colors.toList().map { it.first })
         binding.mainScreenMenuColorsTextField.apply {
             setAdapter(adapterColors)
             setText(adapterColors.getItem(viewModel.chosenColor), false)
@@ -219,7 +219,7 @@ class MainScreenFragment : Fragment() {
                     return false
                 }
             })
-            .transform(FitCenter())
+            .transform(FitCenter(), RoundedCorners(24))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.ic_cat)
             .error(R.drawable.placeholder_gray_rectangle_rounded)

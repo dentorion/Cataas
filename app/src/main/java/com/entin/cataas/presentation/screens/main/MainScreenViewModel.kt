@@ -132,7 +132,7 @@ class MainScreenViewModel @Inject constructor(
             filter = filters[chosenFilter],
             text = textLabelValue,
             size = sliderValue.toString(),
-            colors = colors[chosenColor]
+            colors = colors.values.toTypedArray()[chosenColor]
         )
 
     private fun generateShortRequest() =

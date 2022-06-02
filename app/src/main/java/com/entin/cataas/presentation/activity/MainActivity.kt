@@ -9,11 +9,10 @@ import com.entin.cataas.databinding.ActivityMainBinding
 import com.entin.cataas.presentation.screens.main.MainScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-private lateinit var binding: ActivityMainBinding
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private val mainScreenViewModel: MainScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +43,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupActionBar() {
         val actionBar = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.title = getString(R.string.title_action_bar)
+        actionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = getString(R.string.title_action_bar)
+            elevation = 0.0F
+        }
+
     }
 }

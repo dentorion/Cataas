@@ -1,5 +1,6 @@
 package com.entin.cataas.presentation.screens.main
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,9 +15,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.entin.cataas.R
 import com.entin.cataas.databinding.FragmentMainScreenBinding
 import com.entin.cataas.presentation.utils.*
@@ -44,11 +49,11 @@ class MainScreenFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.stateSplashScreen.collect { splashScreenShowing ->
-                    if (!splashScreenShowing && viewModel.isSuccessfulStart) {
+                    if (!splashScreenShowing) {
+                        if (!viewModel.isSuccessfulStart) {
+                            failResult()
+                        }
                         showInterface()
-                    } else {
-                        showInterface()
-                        failResult()
                     }
                 }
             }
@@ -127,7 +132,7 @@ class MainScreenFragment : Fragment() {
     private fun setTextLabel() {
         binding.apply {
             mainScreenMenuTextForImage.isVisible = viewModel.isFullSearch
-            mainScreenMenuTextForImageTextfield.apply {
+            mainScreenMenuTextForImageTextField.apply {
                 setText(viewModel.textLabelValue)
                 addTextChangedListener { editable ->
                     viewModel.textLabelValue = editable.toString()
@@ -163,7 +168,7 @@ class MainScreenFragment : Fragment() {
     }
 
     private fun setSearchButton() {
-        binding.mainScreenGetButton.setOnClickListener {
+        binding.mainScreenProgressButton.setOnClickListener {
             viewModel.search(isFull = binding.mainScreenMenuCheckBox.isChecked)
         }
     }
@@ -175,9 +180,11 @@ class MainScreenFragment : Fragment() {
     private fun pendingResult() {
         Log.i("Catd", "pendingResult")
         // Make button disable with running spinner
+        binding.mainScreenProgressButton.setLoading()
     }
 
     private fun failResult() {
+        binding.mainScreenProgressButton.setNormal()
         Glide.with(binding.mainScreenCatImage)
             .load(R.drawable.cat_black)
             .transform(FitCenter(), RoundedCorners(24))
@@ -191,11 +198,33 @@ class MainScreenFragment : Fragment() {
     private fun setCatImage(catImgUrl: String) {
         Glide.with(binding.mainScreenCatImage)
             .load(catImgUrl)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.mainScreenProgressButton.setNormal()
+                    return false
+                }
+            })
             .transform(FitCenter())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.ic_cat)
             .error(R.drawable.placeholder_gray_rectangle_rounded)
             .into(binding.mainScreenCatImage)
+
     }
 
     override fun onDestroyView() {

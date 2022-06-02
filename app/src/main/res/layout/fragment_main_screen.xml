@@ -19,11 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="24dp"
+            android:contentDescription="@string/description_cat_photo"
             app:layout_constraintDimensionRatio="1.5:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/placeholder_gray_rectangle_rounded"
-            android:contentDescription="@string/description_cat_photo" />
+            tools:src="@drawable/placeholder_gray_rectangle_rounded" />
 
         <!-- TAG -->
 
@@ -40,6 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/main_screen_cat_image">
 
             <AutoCompleteTextView
+                android:labelFor="@id/main_screen_menu_tags"
                 android:id="@+id/main_screen_menu_tags_textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,6 +63,7 @@
             app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_tags">
 
             <AutoCompleteTextView
+                android:labelFor="@id/main_screen_menu_filters"
                 android:id="@+id/main_screen_menu_filters_textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +95,7 @@
             tools:layout_editor_absoluteX="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/main_screen_menu_text_for_image_textfield"
+                android:id="@+id/main_screen_menu_text_for_image_text_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -110,7 +112,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/main_screen_menu_slider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/main_screen_menu_slider"
-            app:layout_constraintVertical_bias="0.75"/>
+            app:layout_constraintVertical_bias="0.75" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/main_screen_menu_slider"
@@ -155,6 +157,7 @@
             app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_slider">
 
             <AutoCompleteTextView
+                android:labelFor="@id/main_screen_menu_colors"
                 android:id="@+id/main_screen_menu_colors_textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,16 +165,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/main_screen_get_button"
+        <com.entin.cataas.presentation.utils.ProgressButton
+            android:id="@+id/main_screen_progress_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/give_me_cat"
-            android:textSize="14sp"
-            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_colors" />
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_colors"
+            app:progress_btn_title="@string/give_me_cat"
+            app:progress_btn_title_loading="@string/give_me_cat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

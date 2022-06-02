@@ -88,7 +88,7 @@ class MainScreenViewModel @Inject constructor(
 
     private val dispatcher = Dispatchers.IO
 
-    private val _stateSplashScreen = MutableStateFlow(false)
+    private val _stateSplashScreen = MutableStateFlow(true)
     val stateSplashScreen = _stateSplashScreen.asStateFlow()
 
     private val _stateMainScreen = MutableLiveData<ViewResult<MainScreenViewState>>()
@@ -104,9 +104,9 @@ class MainScreenViewModel @Inject constructor(
                 }.onFailure {
                     allTags.add(RANDOM)
                 }
+                _stateSplashScreen.value = false
             }
         }
-        _stateSplashScreen.value = false
     }
 
     fun getRandomCat() = viewModelScope.launch(dispatcher) {

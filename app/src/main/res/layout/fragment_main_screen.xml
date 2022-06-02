@@ -33,7 +33,6 @@
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:hint="@string/choose_tag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +42,7 @@
                 android:id="@+id/main_screen_menu_tags_textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
                 android:inputType="none"
                 android:labelFor="@id/main_screen_menu_tags" />
 

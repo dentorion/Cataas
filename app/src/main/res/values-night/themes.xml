@@ -17,15 +17,15 @@
     </style>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <item name="boxStrokeColor">@color/white</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="android:paddingTop">40dp</item>
         <item name="android:paddingBottom">20dp</item>
+        <item name="android:backgroundTint">@color/white</item>
     </style>
 
     <style name="DescriptionText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/white</item>
         <item name="android:layout_marginTop">20dp</item>
+        <item name="android:backgroundTint">@color/white</item>
     </style>
 
     <style name="Widget.App.Slider" parent="Widget.MaterialComponents.Slider">

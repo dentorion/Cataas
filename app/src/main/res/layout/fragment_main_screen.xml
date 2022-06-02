@@ -18,6 +18,7 @@
             android:id="@+id/main_screen_cat_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="24dp"
             android:contentDescription="@string/description_cat_photo"
             app:layout_constraintDimensionRatio="1.5:1"
@@ -29,22 +30,21 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/main_screen_menu_tags"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/my_label"
-            android:paddingTop="16dp"
-            android:paddingBottom="20dp"
+
+            android:hint="@string/choose_tag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_screen_cat_image">
 
             <AutoCompleteTextView
-                android:labelFor="@id/main_screen_menu_tags"
                 android:id="@+id/main_screen_menu_tags_textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:inputType="none"
+                android:labelFor="@id/main_screen_menu_tags" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,22 +52,22 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/main_screen_menu_filters"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/my_label"
             android:paddingTop="16dp"
             android:paddingBottom="20dp"
+            android:hint="@string/choose_filter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_tags">
 
             <AutoCompleteTextView
-                android:labelFor="@id/main_screen_menu_filters"
                 android:id="@+id/main_screen_menu_filters_textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:inputType="none"
+                android:labelFor="@id/main_screen_menu_filters" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,7 +77,9 @@
             android:id="@+id/main_screen_menu_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/purple_700"
             android:fontFamily="@font/roboto_regular"
+            android:padding="8dp"
             android:text="@string/add_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_filters" />
@@ -86,13 +88,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/main_screen_menu_text_for_image"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/DescriptionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="@string/my_label"
-            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_checkBox"
-            tools:layout_editor_absoluteX="16dp">
+            android:hint="@string/choose_description"
+            app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_checkBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/main_screen_menu_text_for_image_text_field"
@@ -108,7 +108,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zero"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/main_screen_menu_slider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/main_screen_menu_slider"
@@ -118,25 +117,25 @@
             android:id="@+id/main_screen_menu_slider"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:stepSize="1"
+            android:stepSize="@string/step"
             android:valueFrom="@string/zero"
             android:valueTo="@string/sixty"
+            android:layout_marginVertical="20dp"
             app:labelBehavior="withinBounds"
             app:layout_constraintEnd_toStartOf="@+id/main_screen_menu_slider_label_sixty"
             app:layout_constraintStart_toEndOf="@+id/main_screen_menu_slider_label_zero"
             app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_text_for_image"
-            app:thumbColor="@color/black"
-            app:tickColorActive="@color/black"
-            app:tickColorInactive="@color/black"
-            app:trackColorActive="@color/black"
-            app:trackColorInactive="@color/black" />
+            app:thumbColor="@color/purple_700"
+            app:tickColorActive="@color/purple_700"
+            app:tickColorInactive="@color/purple_200"
+            app:trackColorActive="@color/purple_700"
+            app:trackColorInactive="@color/purple_200" />
 
         <TextView
             android:id="@+id/main_screen_menu_slider_label_sixty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sixty"
-            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/main_screen_menu_slider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/main_screen_menu_slider"
@@ -146,10 +145,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/main_screen_menu_colors"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/my_label"
+            android:hint="@string/choose_color"
             android:paddingTop="16dp"
             android:paddingBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -157,11 +156,11 @@
             app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_slider">
 
             <AutoCompleteTextView
-                android:labelFor="@id/main_screen_menu_colors"
                 android:id="@+id/main_screen_menu_colors_textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:inputType="none"
+                android:labelFor="@id/main_screen_menu_colors" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -169,6 +168,7 @@
             android:id="@+id/main_screen_progress_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_screen_menu_colors"

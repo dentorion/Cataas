@@ -48,6 +48,5 @@ class MainActivity : AppCompatActivity() {
             title = getString(R.string.title_action_bar)
             elevation = 0.0F
         }
-
     }
 }
